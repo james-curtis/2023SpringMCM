@@ -4,11 +4,10 @@
 # https://docs.scrapy.org/en/latest/topics/items.html
 
 import scrapy
+from itemadapter import ItemAdapter
 
 
 class BoatItem(scrapy.Item):
-    # define the fields for your item here like:
-
     '''
     常规
     '''
@@ -28,7 +27,7 @@ class BoatItem(scrapy.Item):
     '''
     basic
     '''
-    basicText = scrapy.Field()
+    # basicText = scrapy.Field()
 
     # Year
     year = scrapy.Field()
@@ -57,18 +56,18 @@ class BoatItem(scrapy.Item):
     '''
     description
     '''
-    descriptionText = scrapy.Field()
+    # descriptionText = scrapy.Field()
 
     '''
     OTHER DETAILS
     '''
-    otherDetailsText = scrapy.Field()
+    # otherDetailsText = scrapy.Field()
 
     '''
     PROPULSION
     动力装置
     '''
-    propulsionText = scrapy.Field()
+    # propulsionText = scrapy.Field()
 
     engineMake = scrapy.Field()
 
@@ -88,7 +87,7 @@ class BoatItem(scrapy.Item):
     SPECIFICATIONS
     规格
     '''
-    specificationsText = scrapy.Field()
+    # specificationsText = scrapy.Field()
 
     ## Dimensions       尺寸
 
@@ -121,4 +120,13 @@ class BoatItem(scrapy.Item):
     # Heads
     heads = scrapy.Field()
 
-    pass
+    @staticmethod
+    def init(item):
+        for k in list(ItemAdapter(item).field_names()):
+            item[k] = ''
+
+    @staticmethod
+    def none2str(item):
+        for k in list(ItemAdapter(item).field_names()):
+            if item[k] is None:
+                item[k] = ''

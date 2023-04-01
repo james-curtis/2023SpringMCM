@@ -6,7 +6,7 @@ NEWSPIDER_MODULE = 'boat.spiders'
 ROBOTSTXT_OBEY = False
 
 # Configure maximum concurrent requests performed by Scrapy (default: 16)
-CONCURRENT_REQUESTS = 999
+CONCURRENT_REQUESTS = 16
 
 # Configure a delay for requests for the same website (default: 0)
 # See https://docs.scrapy.org/en/latest/topics/settings.html#download-delay
@@ -14,7 +14,7 @@ CONCURRENT_REQUESTS = 999
 # DOWNLOAD_DELAY = 3
 # The download delay setting will honor only one of:
 CONCURRENT_REQUESTS_PER_DOMAIN = 999
-CONCURRENT_REQUESTS_PER_IP = 999
+# CONCURRENT_REQUESTS_PER_IP = 0
 
 # Disable cookies (enabled by default)
 COOKIES_ENABLED = False
@@ -62,7 +62,10 @@ DOWNLOADER_MIDDLEWARES = {
 # Configure item pipelines
 # See https://docs.scrapy.org/en/latest/topics/item-pipeline.html
 ITEM_PIPELINES = {
-    'boat.pipelines.JsonWriterPipeline': 300,
+    # 'boat.pipelines.JsonWriterPipeline': 300,
+    'boat.pipelines.MongoPipeline': 300,
+    'boat.pipelines.JsonLinePipeline': 310,
+    'boat.pipelines.CsvPipeline': 320,
 }
 
 # Enable and configure the AutoThrottle extension (disabled by default)
@@ -74,7 +77,7 @@ AUTOTHROTTLE_START_DELAY = 1
 AUTOTHROTTLE_MAX_DELAY = 30
 # The average number of requests Scrapy should be sending in parallel to
 # each remote server
-AUTOTHROTTLE_TARGET_CONCURRENCY = 10
+AUTOTHROTTLE_TARGET_CONCURRENCY = 4
 # Enable showing throttling stats for every response received:
 AUTOTHROTTLE_DEBUG = True
 
@@ -89,3 +92,6 @@ AUTOTHROTTLE_DEBUG = True
 DOWNLOAD_TIMEOUT = 10
 # HTTPERROR_ALLOWED_CODES = [504]
 
+
+MONGO_URI = 'mongodb://2023icm:2023icm@192.168.201.100:27017/?authSource=2023icm'
+MONGO_DATABASE = '2023icm'

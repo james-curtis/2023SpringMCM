@@ -21,9 +21,11 @@ class YachtworldSpider(scrapy.Spider):
     def processAllException(self, response):
         if not response.url:  # 接收到url==''时
             self.logger.warning('500')
+            return None
         elif 'exception' in response.url:
             self.logger.warning('exception')
-        return None
+            return None
+        return True
 
     def parse(self, response, **kwargs):
         # yield self.processAllException(response, BoatItem)
@@ -48,12 +50,12 @@ class YachtworldSpider(scrapy.Spider):
             basicsCtx = response.xpath('//div[contains(@class,"collapse-content-details") and .//a[text()="Basics"]]')
             self.parseBasic(response, item, basicsCtx)
 
-            descCtx = response.xpath('//div[contains(@class,"collapse-content-details") and .//a[text()="Description"]]')
-            self.parseDesc(response, item, descCtx)
-
-            otherDetailsCtx = response.xpath(
-                '//div[contains(@class,"collapse-content-details") and .//a[text()="Other Details"]]')
-            self.parseOtherDetails(response, item, otherDetailsCtx)
+            # descCtx = response.xpath('//div[contains(@class,"collapse-content-details") and .//a[text()="Description"]]')
+            # self.parseDesc(response, item, descCtx)
+            #
+            # otherDetailsCtx = response.xpath(
+            #     '//div[contains(@class,"collapse-content-details") and .//a[text()="Other Details"]]')
+            # self.parseOtherDetails(response, item, otherDetailsCtx)
 
             propulsionCtx = response.xpath(
                 '//div[contains(@class,"collapse-content-details") and .//a[text()="Propulsion"]]//*[contains(@class,"detail-data-table")]/*[1]//tbody')
@@ -68,6 +70,7 @@ class YachtworldSpider(scrapy.Spider):
             self.parseAccommodations(response, item, AccommodationsCtx)
 
             yield item
+            # yield BoatItem.none2str(item)
 
     def parseGeneral(self, response, item, ctx):
         '''商品名'''
