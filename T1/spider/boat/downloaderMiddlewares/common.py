@@ -1,5 +1,5 @@
 from anole import UserAgent
-
+from ..proxy import *
 
 class DownloadLoggerMiddleware:
     def process_request(self, request, spider):
@@ -16,4 +16,6 @@ class CustomUserAgentMiddleware:
 
 class HttpProxyMiddleware:
     def process_request(self, request, spider):
-        request.meta['proxy'] = 'http://127.0.0.1:7890'
+        proxy = Proxy.get_proxy()
+        request.meta['proxy'] = f'http://{proxy.get("proxy")}'
+        spider.logger.info(f'使用代理：[{proxy.get("source")}]{proxy.get("proxy")}，{proxy.get("region")}')

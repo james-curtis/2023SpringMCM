@@ -6,7 +6,7 @@ NEWSPIDER_MODULE = 'boat.spiders'
 ROBOTSTXT_OBEY = False
 
 # Configure maximum concurrent requests performed by Scrapy (default: 16)
-CONCURRENT_REQUESTS = 16
+CONCURRENT_REQUESTS = 999
 
 # Configure a delay for requests for the same website (default: 0)
 # See https://docs.scrapy.org/en/latest/topics/settings.html#download-delay
@@ -64,20 +64,20 @@ DOWNLOADER_MIDDLEWARES = {
 ITEM_PIPELINES = {
     # 'boat.pipelines.JsonWriterPipeline': 300,
     'boat.pipelines.MongoPipeline': 300,
-    'boat.pipelines.JsonLinePipeline': 310,
-    'boat.pipelines.CsvPipeline': 320,
+    # 'boat.pipelines.JsonLinePipeline': 310,
+    # 'boat.pipelines.CsvPipeline': 320,
 }
 
 # Enable and configure the AutoThrottle extension (disabled by default)
 # See https://docs.scrapy.org/en/latest/topics/autothrottle.html
 AUTOTHROTTLE_ENABLED = True
 # The initial download delay
-AUTOTHROTTLE_START_DELAY = 1
+AUTOTHROTTLE_START_DELAY = 3
 # The maximum download delay to be set in case of high latencies
 AUTOTHROTTLE_MAX_DELAY = 30
 # The average number of requests Scrapy should be sending in parallel to
 # each remote server
-AUTOTHROTTLE_TARGET_CONCURRENCY = 4
+AUTOTHROTTLE_TARGET_CONCURRENCY = 50
 # Enable showing throttling stats for every response received:
 AUTOTHROTTLE_DEBUG = True
 
@@ -90,6 +90,7 @@ AUTOTHROTTLE_DEBUG = True
 # HTTPCACHE_STORAGE = 'scrapy.extensions.httpcache.FilesystemCacheStorage'
 
 DOWNLOAD_TIMEOUT = 10
+RETRY_TIMES = 10
 # HTTPERROR_ALLOWED_CODES = [504]
 
 

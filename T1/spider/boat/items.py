@@ -130,3 +130,26 @@ class BoatItem(scrapy.Item):
         for k in list(ItemAdapter(item).field_names()):
             if item[k] is None:
                 item[k] = ''
+
+
+class sailboatdata(scrapy.Item):
+    # https://sailboatdata.com/sailboat/jeanneau-yachts-55
+    url = scrapy.Field()
+    hullType = scrapy.Field()
+    riggingType = scrapy.Field()
+    LOA = scrapy.Field()
+    LWL = scrapy.Field()
+    Beam = scrapy.Field()
+    SA = scrapy.Field()
+    DraftMax = scrapy.Field()
+    DraftMin = scrapy.Field()
+    Displacement = scrapy.Field()
+    Ballast = scrapy.Field()
+    SA2Disp = scrapy.Field()
+    Bal2Disp = scrapy.Field()
+    Construction = scrapy.Field()
+    firstBuilt = scrapy.Field()
+    Builder = scrapy.Field()
+    Designer = scrapy.Field()
+    Headroom = scrapy.Field()
+    Water = scrapy.Field()

@@ -17,6 +17,9 @@ class YachtworldSpider(scrapy.Spider):
         # 'https://www.yachtworld.co.uk/yacht/1939-abo-a-b-batvarv-vintage-sail-boat-havskryssare,-byggd-8722010/',
         Config.getStartUrl(i) for i in range(1, 666 + 1)
     ]
+    custom_settings = {
+        'MONGO_COLLECTION': 'data',
+    }
 
     def processAllException(self, response):
         if not response.url:  # 接收到url==''时
