@@ -83,16 +83,18 @@ AUTOTHROTTLE_DEBUG = True
 
 # Enable and configure HTTP caching (disabled by default)
 # See https://docs.scrapy.org/en/latest/topics/downloader-middleware.html#httpcache-middleware-settings
-# HTTPCACHE_ENABLED = True
-# HTTPCACHE_EXPIRATION_SECS = 0
-# HTTPCACHE_DIR = 'httpcache'
-# HTTPCACHE_IGNORE_HTTP_CODES = []
-# HTTPCACHE_STORAGE = 'scrapy.extensions.httpcache.FilesystemCacheStorage'
+HTTPCACHE_ENABLED = True
+HTTPCACHE_EXPIRATION_SECS = 0
+HTTPCACHE_DIR = 'httpcache'
+HTTPCACHE_IGNORE_HTTP_CODES = []
+HTTPCACHE_STORAGE = 'scrapy.extensions.httpcache.FilesystemCacheStorage'
 
 DOWNLOAD_TIMEOUT = 10
 RETRY_TIMES = 10
 # HTTPERROR_ALLOWED_CODES = [504]
 
 
-MONGO_URI = 'mongodb://2023icm:2023icm@192.168.201.100:27017/?authSource=2023icm'
-MONGO_DATABASE = '2023icm'
+MONGO_URI = 'mongodb://127.0.0.1:27017/'
+MONGO_DATABASE = '2023math'
+
+from scrapy.dupefilters import RFPDupeFilter

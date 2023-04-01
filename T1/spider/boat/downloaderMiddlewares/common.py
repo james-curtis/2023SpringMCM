@@ -17,5 +17,7 @@ class CustomUserAgentMiddleware:
 class HttpProxyMiddleware:
     def process_request(self, request, spider):
         proxy = Proxy.get_proxy()
-        request.meta['proxy'] = f'http://{proxy.get("proxy")}'
-        spider.logger.info(f'使用代理：[{proxy.get("source")}]{proxy.get("proxy")}，{proxy.get("region")}')
+        addr = proxy.get("proxy")
+        request.meta['proxy'] = f'http://{addr}'
+        spider.logger.info(f'使用代理：[{proxy.get("source")}]{addr}，{proxy.get("region")}')
+        Proxy.delete_proxy(addr)
