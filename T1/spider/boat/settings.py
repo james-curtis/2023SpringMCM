@@ -50,7 +50,8 @@ DOWNLOADER_MIDDLEWARES = {
 
     'boat.downloaderMiddlewares.common.CustomUserAgentMiddleware': 545,
     'boat.downloaderMiddlewares.common.DownloadLoggerMiddleware': 555,
-    'boat.downloaderMiddlewares.common.HttpProxyMiddleware': 100,
+    # 'boat.downloaderMiddlewares.common.HttpProxyMiddleware': 100,
+    'boat.downloaderMiddlewares.common.HttpProxyMiddleware2': 100,
 }
 
 # Enable or disable extensions
@@ -83,11 +84,11 @@ AUTOTHROTTLE_DEBUG = True
 
 # Enable and configure HTTP caching (disabled by default)
 # See https://docs.scrapy.org/en/latest/topics/downloader-middleware.html#httpcache-middleware-settings
-HTTPCACHE_ENABLED = True
-HTTPCACHE_EXPIRATION_SECS = 0
-HTTPCACHE_DIR = 'httpcache'
-HTTPCACHE_IGNORE_HTTP_CODES = []
-HTTPCACHE_STORAGE = 'scrapy.extensions.httpcache.FilesystemCacheStorage'
+# HTTPCACHE_ENABLED = True
+# HTTPCACHE_EXPIRATION_SECS = 0
+# HTTPCACHE_DIR = 'httpcache'
+# HTTPCACHE_IGNORE_HTTP_CODES = []
+# HTTPCACHE_STORAGE = 'scrapy.extensions.httpcache.FilesystemCacheStorage'
 
 DOWNLOAD_TIMEOUT = 10
 RETRY_TIMES = 10
